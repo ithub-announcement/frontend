@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-background-primary: #fff;
+  --color-text-primary: #252525;
+  --color-purple: rgb(127, 66, 255, 1);
+  --color-purple-light: rgb(231, 219, 253, 1);
+  --default-font: "TT Norms", Arial, sans-serif;
+  color-scheme: light;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  background-color: var(--color-background-primary) !important;
+  color: var(--color-text-primary) !important;
+  font-family: var(--default-font);
+  overflow-x: hidden;
+}
