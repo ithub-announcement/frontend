@@ -9,16 +9,16 @@ export const EditorLayoutView: FC = () => {
   const { uuid_draft } = useParams();
 
   if (uuid_draft) {
-    const payload = useTypedSelector((state) => state.EditorSliceReducer);
     const { data, isLoading, isSuccess } = useGetDraftByUUIDQuery(uuid_draft);
     const { setOriginAndWrapper } = useActions();
+    const payload = useTypedSelector((state) => state.EditorSliceReducer);
 
     useEffect(() => {
       setOriginAndWrapper(data);
     }, [isSuccess, !payload.origin.uuid]);
 
     if (isLoading || !data) {
-      return <Preloader />;
+      return <Preloader fullScreen={true} />;
     }
 
     if (isSuccess && !data) {

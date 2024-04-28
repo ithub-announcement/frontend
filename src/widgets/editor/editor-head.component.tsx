@@ -1,8 +1,10 @@
+import { useDeleteDraft } from "@/features/drafts/useDeleteDraft.feature";
 import { useSaveDraft } from "@/features/drafts/useSaveDraft.feature";
 import { useTypedSelector } from "@/shared/hooks/redux/redux.selector";
-import { Button, Tooltip } from "flowbite-react";
+import { Button, Dropdown, Tooltip } from "flowbite-react";
 import { FC } from "react";
 import { GoChevronLeft } from "react-icons/go";
+import { IoMdMore } from "react-icons/io";
 import { LuSaveAll } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 
@@ -11,6 +13,7 @@ export const EditorHead: FC = () => {
   const navigate = useNavigate();
 
   const save = useSaveDraft();
+  const deleteRequest = useDeleteDraft();
 
   return (
     <>
@@ -39,6 +42,29 @@ export const EditorHead: FC = () => {
                   </Tooltip>
                 </Button>
               )}
+            {payload.origin.uuid && (
+              <Dropdown
+                label={
+                  <div className="flex justify-center items-center">
+                    <IoMdMore className="text-2xl hover:cursor-pointer" />
+                  </div>
+                }
+                dismissOnClick={false}
+                arrowIcon={false}
+                color="transparent"
+              >
+                <Dropdown.Item
+                  className="w-full flex disabled:bg-transparent disabled:cursor-no-drop disabled:opacity-70"
+                  disabled={payload.origin == payload.wrapper}
+                  onClick={() => deleteRequest()}
+                >
+                  <span className="text-red-500">🗑 Удалить</span>
+                </Dropdown.Item>
+              </Dropdown>
+            )}
+            <Button color="purple">
+              <span>Опубликовать</span>
+            </Button>
           </div>
         </div>
       </div>

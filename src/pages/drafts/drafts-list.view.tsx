@@ -1,10 +1,13 @@
 import { DraftsList } from "@/entities/drafts/components/drafts-list/drafts-list.component";
+import { useTitle } from "@/shared/hooks/react/useTitle.hook";
 import { Center } from "@/widgets/center/center.component";
 import { Button, Tooltip } from "flowbite-react";
 import { FC } from "react";
 import { VscAdd } from "react-icons/vsc";
 
 const DraftsListView: FC = () => {
+  useTitle("Черновики");
+
   return (
     <Center>
       <div className="w-full min-h-screen h-full">

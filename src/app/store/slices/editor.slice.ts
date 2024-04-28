@@ -12,6 +12,7 @@ const initialState = {
   },
   editor: {
     disable_editor: false,
+    error: "",
   },
 };
 
@@ -24,6 +25,10 @@ export const EditorSlice = createSlice({
     },
     setEditorValue: (state, action) => {
       state.wrapper.content = action.payload;
+    },
+
+    setEditorError: (state, action) => {
+      state.editor.error = action.payload;
     },
 
     setOriginAndWrapper: (state, action) => {

@@ -7,7 +7,7 @@ export const DraftsList: FC = () => {
   const { data, isLoading } = useGetListOfDraftsQuery();
 
   if (isLoading || !data) {
-    return <Preloader />;
+    return <Preloader fullScreen={false} />;
   }
 
   return (
