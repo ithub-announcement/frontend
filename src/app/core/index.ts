@@ -1,5 +1,6 @@
 import ReactDOM from "react-dom/client";
-import { AppComponent, CoreConfiguration } from "./types";
+import { AppComponent, AuthorizationType, CoreConfiguration } from "./types";
+import { ResponseModel } from "../types";
 
 export class AppCore {
   private configuration: CoreConfiguration = {
@@ -12,9 +13,34 @@ export class AppCore {
     this.configuration.AppComponent = component;
   }
 
-  // @ts-ignore
   private async validateAuthorization() {
     try {
+      if (localStorage.getItem("authorization")) {
+        const response = await this.makeCall(
+          "http://10.3.11.193:8080/api/auth/validate-tokens",
+          {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              accessToken: localStorage.getItem("authorization"),
+            }),
+          }
+        );
+
+        if (response.status == 401) {
+          localStorage.setItem(
+            "authorization",
+            JSON.stringify(
+              (response.body as unknown as ResponseModel<AuthorizationType>)
+                .data?.accessToken
+            )
+          );
+          return;
+        }
+      }
     } catch (err: unknown) {
       console.error(err as string);
     }

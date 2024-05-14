@@ -1,8 +1,11 @@
 import { FC } from "react";
 import { Avatar, Button, Navbar, Tooltip } from "flowbite-react";
 import { VscAdd } from "react-icons/vsc";
+import { useNavigate } from "react-router-dom";
 
 export const Header: FC = () => {
+  const navigate = useNavigate();
+
   return (
     <Navbar fluid rounded className="w-full h-[60px] fixed z-50">
       <Navbar.Toggle />
@@ -25,10 +28,13 @@ export const Header: FC = () => {
         />
       </div>
       <Navbar.Collapse className="bg-white">
-        <Navbar.Link href="/">
+        <Navbar.Link className="cursor-pointer" onClick={() => navigate("/")}>
           <span>Главная</span>
         </Navbar.Link>
-        <Navbar.Link href="/drafts">
+        <Navbar.Link
+          className="cursor-pointer"
+          onClick={() => navigate("/drafts")}
+        >
           <span>Черновики</span>
         </Navbar.Link>
       </Navbar.Collapse>

@@ -2,13 +2,16 @@ import { useDeleteDraft } from "@/features/drafts/useDeleteDraft.feature";
 import { useSaveDraft } from "@/features/drafts/useSaveDraft.feature";
 import { useTypedSelector } from "@/shared/hooks/redux/redux.selector";
 import { Button, Dropdown, Tooltip } from "flowbite-react";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { GoChevronLeft } from "react-icons/go";
 import { IoMdMore } from "react-icons/io";
 import { LuSaveAll } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
+import { DeleteModal } from "../delete-modal/delete-modal.component";
 
 export const EditorHead: FC = () => {
+  const [IsActiveDeleteModal, setIsActiveDeleteModal] =
+    useState<boolean>(false);
   const payload = useTypedSelector((state) => state.EditorSliceReducer);
   const navigate = useNavigate();
 
@@ -17,11 +20,17 @@ export const EditorHead: FC = () => {
 
   return (
     <>
-      <div className="w-full h-fit flex justify-center items-center p-2 mb-5 absolute">
+      <DeleteModal
+        id={payload.origin.uuid}
+        active={IsActiveDeleteModal}
+        setActive={setIsActiveDeleteModal}
+        deleteRequest={deleteRequest}
+      />
+      <div className="w-full h-fit flex justify-center items-center p-2 mb-5 absolute z-20">
         <div className="w-full max-w-[1280px] flex justify-between">
           <div>
-            <Button as="span" color="transparent" onClick={() => navigate(-1)}>
-              <Tooltip content="Назад">
+            <Button as="span" color="transparent" onClick={() => navigate("/")}>
+              <Tooltip content="Выйти">
                 <GoChevronLeft className="text-2xl hover:cursor-pointer" />
               </Tooltip>
             </Button>
@@ -43,28 +52,30 @@ export const EditorHead: FC = () => {
                 </Button>
               )}
             {payload.origin.uuid && (
-              <Dropdown
-                label={
-                  <div className="flex justify-center items-center">
-                    <IoMdMore className="text-2xl hover:cursor-pointer" />
-                  </div>
-                }
-                dismissOnClick={false}
-                arrowIcon={false}
-                color="transparent"
-              >
-                <Dropdown.Item
-                  className="w-full flex disabled:bg-transparent disabled:cursor-no-drop disabled:opacity-70"
-                  disabled={payload.origin == payload.wrapper}
-                  onClick={() => deleteRequest()}
+              <>
+                <Dropdown
+                  label={
+                    <div className="flex justify-center items-center">
+                      <IoMdMore className="text-2xl hover:cursor-pointer" />
+                    </div>
+                  }
+                  dismissOnClick={false}
+                  arrowIcon={false}
+                  color="transparent"
                 >
-                  <span className="text-red-500">🗑 Удалить</span>
-                </Dropdown.Item>
-              </Dropdown>
+                  <Dropdown.Item
+                    className="w-full flex disabled:bg-transparent disabled:cursor-no-drop disabled:opacity-70"
+                    disabled={payload.origin == payload.wrapper}
+                    onClick={() => setIsActiveDeleteModal(true)}
+                  >
+                    <span className="text-red-500">🗑 Удалить</span>
+                  </Dropdown.Item>
+                </Dropdown>
+                <Button color="purple">
+                  <span>Опубликовать</span>
+                </Button>
+              </>
             )}
-            <Button color="purple">
-              <span>Опубликовать</span>
-            </Button>
           </div>
         </div>
       </div>

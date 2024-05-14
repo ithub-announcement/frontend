@@ -4,6 +4,7 @@ import { useTypedSelector } from "@/shared/hooks/redux/redux.selector";
 import { Preloader } from "@/widgets/preloader/preloader.component";
 import { FC, useEffect } from "react";
 import { Outlet, useParams } from "react-router-dom";
+import NotFoundView from "../notfound/notfound.view";
 
 export const EditorLayoutView: FC = () => {
   const { uuid_draft } = useParams();
@@ -17,12 +18,12 @@ export const EditorLayoutView: FC = () => {
       setOriginAndWrapper(data);
     }, [isSuccess, !payload.origin.uuid]);
 
-    if (isLoading || !data) {
-      return <Preloader fullScreen={true} />;
+    if (isSuccess && !data) {
+      return <NotFoundView />;
     }
 
-    if (isSuccess && !data) {
-      return "not found.";
+    if (isLoading || !data) {
+      return <Preloader fullScreen={true} />;
     }
   }
 

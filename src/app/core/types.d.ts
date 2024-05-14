@@ -5,3 +5,7 @@ export type CoreConfiguration = {
   AppComponent: AppComponent;
   AppReactDOM: ReactDOM.Root | null;
 };
+
+export type AuthorizationType = {
+  accessToken: string;
+};
