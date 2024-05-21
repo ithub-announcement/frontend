@@ -23,6 +23,7 @@ export const Header: FC = () => {
           size="md"
           placeholderInitials="Д"
           rounded
+          onClick={() => navigate("/login")}
           img="https://flowbite.com/docs/images/people/profile-picture-4.jpg"
           className="select-none cursor-pointer"
         />

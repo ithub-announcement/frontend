@@ -25,14 +25,14 @@ export class AppCore {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              accessToken: localStorage.getItem("authorization"),
+              accessToken: localStorage.getItem("access"),
             }),
           }
         );
 
         if (response.status == 401) {
           localStorage.setItem(
-            "authorization",
+            "access",
             JSON.stringify(
               (response.body as unknown as ResponseModel<AuthorizationType>)
                 .data?.accessToken

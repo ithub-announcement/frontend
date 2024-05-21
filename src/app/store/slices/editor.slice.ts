@@ -9,6 +9,7 @@ const initialState = {
     uuid: "",
     title: "",
     content: "",
+    dateTime: "",
   },
   editor: {
     disable_editor: false,

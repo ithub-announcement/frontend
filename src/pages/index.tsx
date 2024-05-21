@@ -11,6 +11,8 @@ const DraftsListView = lazy(() => import("./drafts/drafts-list.view"));
 
 const NotFoundView = lazy(() => import("./notfound/notfound.view"));
 
+const LoginView = lazy(() => import("./login/login.view"));
+
 export const AppRouting: FC = () => {
   return (
     <Routes>
@@ -22,6 +24,7 @@ export const AppRouting: FC = () => {
         <Route index element={<EditorView />} />
         <Route path=":uuid_draft" element={<EditorView />} />
       </Route>
+      <Route path="/login" element={<LoginView />} />
       <Route path="*" element={<NotFoundView />} />
     </Routes>
   );

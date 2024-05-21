@@ -8,4 +8,5 @@ export type CoreConfiguration = {
 
 export type AuthorizationType = {
   accessToken: string;
+  refreshToken: string;
 };

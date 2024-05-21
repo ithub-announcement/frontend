@@ -26,7 +26,23 @@ export const EditorHead: FC = () => {
         setActive={setIsActiveDeleteModal}
         deleteRequest={deleteRequest}
       />
-      <div className="w-full h-fit flex justify-center items-center p-2 mb-5 absolute z-20">
+      <div className="w-full h-fit flex justify-center items-center p-2 mb-5 z-20 absolute">
+        {payload.origin.uuid && (
+          <div className="absolute">
+            <p className="text-gray-400 font-medium">
+              {new Date(payload.origin.dateTime).getUTCDate() ==
+              new Date().getUTCDate() ? (
+                "Сегодня"
+              ) : (
+                <>
+                  {new Intl.DateTimeFormat("ru-Ru").format(
+                    new Date(payload.origin.dateTime)
+                  )}
+                </>
+              )}
+            </p>
+          </div>
+        )}
         <div className="w-full max-w-[1280px] flex justify-between">
           <div>
             <Button as="span" color="transparent" onClick={() => navigate("/")}>
