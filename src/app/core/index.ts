@@ -15,9 +15,9 @@ export class AppCore {
 
   private async validateAuthorization() {
     try {
-      if (localStorage.getItem("authorization")) {
+      if (localStorage.getItem("access") && localStorage.getItem("refresh")) {
         const response = await this.makeCall(
-          "http://10.3.11.193:8080/api/auth/validate-tokens",
+          "http://10.3.11.193:8080/api/auth/validate",
           {
             method: "POST",
             headers: {
@@ -26,6 +26,7 @@ export class AppCore {
             },
             body: JSON.stringify({
               accessToken: localStorage.getItem("access"),
+              refreshToken: localStorage.getItem("refresh"),
             }),
           }
         );

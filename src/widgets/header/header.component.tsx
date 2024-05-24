@@ -19,14 +19,18 @@ export const Header: FC = () => {
             <VscAdd />
           </Button>
         </Tooltip>
-        <Avatar
-          size="md"
-          placeholderInitials="Д"
-          rounded
-          onClick={() => navigate("/login")}
-          img="https://flowbite.com/docs/images/people/profile-picture-4.jpg"
-          className="select-none cursor-pointer"
-        />
+        {localStorage.getItem("access") && localStorage.getItem("refresh") ? (
+          <Avatar
+            size="md"
+            placeholderInitials="0646"
+            rounded
+            className="select-none cursor-pointer *:text-xs"
+          />
+        ) : (
+          <Button color="purple" onClick={() => navigate("/login")}>
+            <span>Войти</span>
+          </Button>
+        )}
       </div>
       <Navbar.Collapse className="bg-white">
         <Navbar.Link className="cursor-pointer" onClick={() => navigate("/")}>
