@@ -3,3 +3,8 @@ export type TagType = {
   value: string;
   baseColor: string;
 };
+
+export type TagPayloadType = {
+  value: string;
+  baseColor: string;
+};

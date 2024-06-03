@@ -1,8 +1,9 @@
 import { FC } from "react";
 import { DeleteModalProps } from "./delete-modal";
 import { Button, Modal } from "flowbite-react";
+import { ModalType } from "@/app/types/components";
 
-export const DeleteModal: FC<DeleteModalProps> = (props) => {
+export const DeleteModal: FC<ModalType & DeleteModalProps> = (props) => {
   return (
     <Modal
       show={props.active}

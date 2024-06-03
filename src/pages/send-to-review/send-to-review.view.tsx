@@ -12,16 +12,25 @@ const SendToReviewView: FC = () => {
   return (
     <>
       <div className="w-full max-w-[560px] min-h-screen mx-auto">
-        <div className="w-full p-6 pt-10 flex justify-between flex-row mb-5">
-          <h3 className="text-3xl font-bold">Отправка на рассмотрение</h3>
+        <div className="w-full p-6 pt-10 mb-5">
+          <h3 className="text-3xl font-bold mb-4">Отправка на рассмотрение</h3>
+          <p>
+            Перед показом вашего объявления, мы должны убедиться в его
+            безопасности. Для этого отправьте заявку на рассмотрение вашего
+            объявления. Мы слышали, что это делается при нажатии кнопки
+            "Отправить" 🤫
+          </p>
         </div>
         <div className="px-6">
-          <FloatingLabel
-            variant="outlined"
-            label="Название"
-            defaultValue={payload.wrapper.title}
-            onChange={(e) => setEditorTitle(e.target.value)}
-          />
+          <div className="mb-5">
+            <FloatingLabel
+              variant="outlined"
+              label="Название"
+              defaultValue={payload.wrapper.title}
+              onChange={(e) => setEditorTitle(e.target.value)}
+            />
+            <FloatingLabel variant="outlined" label="Категории" />
+          </div>
           <div className="flex flex-col gap-1">
             <Button
               color="transparent"
