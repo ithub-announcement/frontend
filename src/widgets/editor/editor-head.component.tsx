@@ -87,7 +87,10 @@ export const EditorHead: FC = () => {
                     <span className="text-red-500">🗑 Удалить</span>
                   </Dropdown.Item>
                 </Dropdown>
-                <Button color="purple">
+                <Button
+                  color="purple"
+                  href={`/editor/${payload.origin.uuid}/send-to-review`}
+                >
                   <span>Опубликовать</span>
                 </Button>
               </>

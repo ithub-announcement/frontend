@@ -12,7 +12,7 @@ export const Preloader: FC<{ fullScreen?: boolean }> = ({
         fullScreen ? "h-screen" : "h-fit py-2"
       } flex justify-center items-center bg-white bg-opacity-80`}
     >
-      <Spinner color="purple" size="xl" />
+      <Spinner color="purple" />
     </div>
   );
 };
