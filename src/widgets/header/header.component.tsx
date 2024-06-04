@@ -10,22 +10,23 @@ export const Header: FC = () => {
     <Navbar fluid rounded className="w-full h-[60px] fixed z-50">
       <Navbar.Toggle />
       <div className="flex md:order-2">
-        <Tooltip content="Написать пост" placement="bottom">
-          <Button
-            className="sm:w-full h-full text-center flex justify-center items-center leading-none"
-            color="transparent"
-            href="/editor"
-          >
-            <VscAdd />
-          </Button>
-        </Tooltip>
         {localStorage.getItem("access") && localStorage.getItem("refresh") ? (
-          <Avatar
-            size="md"
-            placeholderInitials="0646"
-            rounded
-            className="select-none cursor-pointer *:text-xs"
-          />
+          <>
+            <Tooltip content="Написать пост" placement="bottom">
+              <Button
+                className="sm:w-full h-full text-center flex justify-center items-center leading-none"
+                color="transparent"
+                href="/editor"
+              >
+                <VscAdd />
+              </Button>
+            </Tooltip>
+            <Avatar
+              size="md"
+              rounded
+              className="select-none cursor-pointer *:text-xs"
+            />
+          </>
         ) : (
           <Button color="purple" onClick={() => navigate("/login")}>
             <span>Войти</span>

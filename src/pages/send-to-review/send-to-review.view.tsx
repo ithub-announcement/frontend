@@ -31,7 +31,7 @@ const SendToReviewView: FC = () => {
             />
             <FloatingLabel variant="outlined" label="Категории" />
           </div>
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-2">
             <Button
               color="transparent"
               size="lg"

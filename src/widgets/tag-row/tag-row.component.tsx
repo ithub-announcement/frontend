@@ -26,7 +26,7 @@ export const TagRow: FC<TagType> = (props) => {
         <Table.Cell className="text-gray-900">
           <div className="flex gap-1 justify-start items-center">
             <GoDotFill className="text-xl" style={{ color: props.baseColor }} />
-            {props.baseColor}
+            #{props.baseColor}
           </div>
         </Table.Cell>
         <Table.Cell className="whitespace-nowrap dark:text-white flex justify-end">
