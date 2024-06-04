@@ -7,9 +7,7 @@ export const ReviewAPI = createApi({
     baseUrl: __APPLICATION_CONFIG__.api.baseUrl,
   }),
   tagTypes: ["Draft", "Drafts"],
-  endpoints: (build) => ({
-    // todo...
-  }),
+  endpoints: () => ({}),
 });
 
 export const {} = ReviewAPI;

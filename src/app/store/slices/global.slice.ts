@@ -13,10 +13,6 @@ export const GlobalSlice = createSlice({
     setGlobalLoading: (state, action) => {
       state.global.isLoading = action.payload;
     },
-
-    resetGlobalSlice: (state) => {
-      state = initialState;
-    },
   },
 });
 
