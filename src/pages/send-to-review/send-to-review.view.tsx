@@ -1,14 +1,7 @@
-import { useActions } from "@/shared/hooks/redux/redux.actions";
-import { useTypedSelector } from "@/shared/hooks/redux/redux.selector";
-import { Button, FloatingLabel } from "flowbite-react";
+import { SendToReviewForm } from "@/widgets/send-to-review-form/send-to-review-form.component";
 import { FC } from "react";
-import { useNavigate } from "react-router-dom";
 
 const SendToReviewView: FC = () => {
-  const payload = useTypedSelector((state) => state.EditorSliceReducer);
-  const { setEditorTitle } = useActions();
-  const navigate = useNavigate();
-
   return (
     <>
       <div className="w-full max-w-[560px] min-h-screen mx-auto">
@@ -22,32 +15,7 @@ const SendToReviewView: FC = () => {
           </p>
         </div>
         <div className="px-6">
-          <div className="mb-5">
-            <FloatingLabel
-              variant="outlined"
-              label="Название"
-              defaultValue={payload.wrapper.title}
-              onChange={(e) => setEditorTitle(e.target.value)}
-            />
-            <FloatingLabel variant="outlined" label="Категории" />
-          </div>
-          <div className="flex flex-col gap-2">
-            <Button
-              color="transparent"
-              size="lg"
-              className="w-full bg-[#835de1] hover:bg-[#9b7ef1] text-white transition"
-            >
-              <span>Отправить</span>
-            </Button>
-            <Button
-              color="transparent"
-              size="lg"
-              className="w-full bg-transparent hover:bg-gray-100 text-gray-500 transition"
-              onClick={() => navigate(-1)}
-            >
-              <span>Назад</span>
-            </Button>
-          </div>
+          <SendToReviewForm />
         </div>
       </div>
     </>

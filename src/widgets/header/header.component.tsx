@@ -49,6 +49,12 @@ export const Header: FC = () => {
         >
           <span>Категории</span>
         </Navbar.Link>
+        <Navbar.Link
+          className="cursor-pointer"
+          onClick={() => navigate("/review")}
+        >
+          <span>Модерация</span>
+        </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   );
