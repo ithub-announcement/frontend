@@ -1,6 +1,7 @@
 import { useAuhtorzationClientMutation } from "@/entities/login/login.api";
 import { Button, Spinner, TextInput } from "flowbite-react";
 import { FC, useEffect, useState } from "react";
+import { BiErrorAlt } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 
 export const LoginForm: FC = () => {
@@ -56,8 +57,9 @@ export const LoginForm: FC = () => {
         />
       </div>
       {error.error_message && (
-        <div>
-          <p className="text-red-500">{error.error_message}</p>
+        <div className="flex gap-1 justify-start items-center">
+          <BiErrorAlt className="text-red-500 text-sm" />
+          <p className="text-red-500 text-sm">{error.error_message}</p>
         </div>
       )}
       <div className="flex flex-col gap-2">
