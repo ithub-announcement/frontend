@@ -1,6 +1,6 @@
 import { useAuhtorzationClientMutation } from "@/entities/login/login.api";
 import { Button, Spinner, TextInput } from "flowbite-react";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const LoginForm: FC = () => {
@@ -8,16 +8,22 @@ export const LoginForm: FC = () => {
     username: "",
     password: "",
   });
+  const [error, setError] = useState({
+    error_message: "",
+  });
   const navigate = useNavigate();
   const [request, { data, isSuccess, isLoading }] =
     useAuhtorzationClientMutation();
 
-  if (isSuccess) {
-    localStorage.setItem("access", data.data?.accessToken!);
-    localStorage.setItem("refresh", data.data?.refreshToken!);
-
-    navigate("/");
-  }
+  useEffect(() => {
+    if (data?.data == undefined) {
+      setError((prev) => ({ ...prev, error_message: data?.message! }));
+    } else {
+      localStorage.setItem("access", data.data?.accessToken!);
+      localStorage.setItem("refresh", data.data?.refreshToken!);
+      navigate("/");
+    }
+  }, [isSuccess]);
 
   return (
     <form
@@ -26,6 +32,7 @@ export const LoginForm: FC = () => {
         e.preventDefault();
         request(state);
       }}
+      action="/login"
     >
       <div className="mb-8">
         <h1 className="text-4xl text-center font-semibold">Войти</h1>
@@ -48,6 +55,11 @@ export const LoginForm: FC = () => {
           }
         />
       </div>
+      {error.error_message && (
+        <div>
+          <p className="text-red-500">{error.error_message}</p>
+        </div>
+      )}
       <div className="flex flex-col gap-2">
         <Button
           color="transparent"
