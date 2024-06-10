@@ -25,3 +25,7 @@ body,
   font-family: var(--default-font);
   overflow-x: hidden;
 }
+
+.focus\:ring-cyan-300:focus {
+  --tw-ring-opacity: 0 !important;
+}

@@ -7,6 +7,13 @@ export const ReviewAPI = createApi({
   reducerPath: "review/api",
   baseQuery: fetchBaseQuery({
     baseUrl: __APPLICATION_CONFIG__.api.baseUrl,
+    prepareHeaders: (headers) => {
+      const token: string | null = localStorage.getItem("access");
+      if (token) {
+        headers.set("Authorization", token);
+      }
+      return headers;
+    },
   }),
   tagTypes: ["Review", "Reviews"],
   endpoints: (build) => ({
@@ -48,8 +55,20 @@ export const ReviewAPI = createApi({
       }),
       invalidatesTags: ["Review"],
     }),
+    GetListOfSendedOnReview: build.query<ReviewType[], void>({
+      query: () => ({
+        url: "/review/reviewByAuthor",
+        method: "GET",
+      }),
+      transformResponse: (response: ResponseModel<ReviewType[]>) =>
+        response.data!,
+      providesTags: ["Reviews"],
+    }),
   }),
 });
 
-export const { usePostSendToReviewMutation, useGetListOfReviewRequestsQuery } =
-  ReviewAPI;
+export const {
+  usePostSendToReviewMutation,
+  useGetListOfReviewRequestsQuery,
+  useGetListOfSendedOnReviewQuery,
+} = ReviewAPI;

@@ -1,8 +1,11 @@
 import { DraftsList } from "@/entities/drafts/components/drafts-list/drafts-list.component";
+import { SendedReviewsList } from "@/entities/review/components/sended-reviews/sended-reviews.component";
 import { useTitle } from "@/shared/hooks/react/useTitle.hook";
 import { Center } from "@/widgets/center/center.component";
-import { Button, Tooltip } from "flowbite-react";
+import { Button, TabItem, Tabs, Tooltip } from "flowbite-react";
 import { FC } from "react";
+import { GoIssueDraft } from "react-icons/go";
+import { PiEyesFill } from "react-icons/pi";
 import { VscAdd } from "react-icons/vsc";
 
 const DraftsListView: FC = () => {
@@ -26,7 +29,14 @@ const DraftsListView: FC = () => {
               </Tooltip>
             </div>
             <div>
-              <DraftsList />
+              <Tabs style="underline">
+                <TabItem title="Черновики" icon={GoIssueDraft}>
+                  <DraftsList />
+                </TabItem>
+                <TabItem title="На рассмотрении" icon={PiEyesFill}>
+                  <SendedReviewsList />
+                </TabItem>
+              </Tabs>
             </div>
           </div>
         </div>
