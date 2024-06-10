@@ -2,7 +2,7 @@ import { usePostSendToReviewMutation } from "@/entities/review/review.api";
 import { useActions } from "@/shared/hooks/redux/redux.actions";
 import { useTypedSelector } from "@/shared/hooks/redux/redux.selector";
 import { Button, FloatingLabel, Spinner } from "flowbite-react";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { BiErrorAlt } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 
@@ -28,7 +28,7 @@ export const SendToReviewForm: FC = () => {
       {isError && error && (
         <div className="flex gap-1 justify-start items-center mb-5">
           <BiErrorAlt className="text-red-500 text-sm" />
-          <p className="text-red-500 text-sm">Ошибка</p>
+          <p className="text-red-500 text-sm">Ошибка отправки</p>
         </div>
       )}
       <div className="flex flex-col gap-2">
@@ -36,7 +36,12 @@ export const SendToReviewForm: FC = () => {
           color="transparent"
           size="lg"
           className="w-full bg-[#835de1] hover:bg-[#9b7ef1] text-white transition"
-          onClick={() => request(payload.origin.uuid)}
+          onClick={() =>
+            request({
+              uuid: payload.origin.uuid,
+              tags: [12],
+            })
+          }
         >
           {isLoading ? (
             <Spinner color="purple" size="sm" />

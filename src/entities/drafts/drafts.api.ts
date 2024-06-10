@@ -7,6 +7,13 @@ export const DraftsAPI = createApi({
   reducerPath: "drafts/api",
   baseQuery: fetchBaseQuery({
     baseUrl: __APPLICATION_CONFIG__.api.baseUrl,
+    prepareHeaders: (headers) => {
+      const token: string | null = localStorage.getItem("access");
+      if (token) {
+        headers.set("Authorization", token);
+      }
+      return headers;
+    },
   }),
   tagTypes: ["Draft", "Drafts"],
   endpoints: (build) => ({

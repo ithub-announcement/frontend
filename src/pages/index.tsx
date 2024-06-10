@@ -10,6 +10,7 @@ const DraftsListView = lazy(() => import("./drafts/drafts-list.view"));
 const NotFoundView = lazy(() => import("./notfound/notfound.view"));
 const LoginView = lazy(() => import("./login/login.view"));
 const SendToReview = lazy(() => import("./send-to-review/send-to-review.view"));
+const ReviewListView = lazy(() => import("./review/review-list.view"));
 
 export const AppRouting: FC = () => {
   return (
@@ -18,6 +19,7 @@ export const AppRouting: FC = () => {
         <Route index element={<PublicListView />} />
         <Route path="drafts" element={<DraftsListView />} />
         <Route path="tags" element={<TagsListView />} />
+        <Route path="review" element={<ReviewListView />} />
       </Route>
       <Route path="/editor" element={<EditorLayoutView />}>
         <Route index element={<EditorView />} />
