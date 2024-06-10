@@ -2,7 +2,7 @@ import { usePostSendToReviewMutation } from "@/entities/review/review.api";
 import { useActions } from "@/shared/hooks/redux/redux.actions";
 import { useTypedSelector } from "@/shared/hooks/redux/redux.selector";
 import { Button, FloatingLabel, Spinner } from "flowbite-react";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { BiErrorAlt } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 
@@ -11,8 +11,12 @@ export const SendToReviewForm: FC = () => {
   const { setEditorTitle } = useActions();
   const navigate = useNavigate();
 
-  const [request, { isLoading, isError, error }] =
+  const [request, { isLoading, isSuccess, data, isError, error }] =
     usePostSendToReviewMutation();
+
+  useEffect(() => {
+    if (isSuccess) navigate("/drafts");
+  }, [isSuccess, data, !isLoading]);
 
   return (
     <>

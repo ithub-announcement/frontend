@@ -13,7 +13,7 @@ export const ReviewCard: FC<ReviewType> = (_props) => {
           <Tooltip
             content={
               <p className="text-gray-300">
-                Одобренно <span className="text-white">{_props.inspector}</span>
+                Одобренно <span className="text-white">@i22s0646</span>
               </p>
             }
           >
@@ -29,11 +29,11 @@ export const ReviewCard: FC<ReviewType> = (_props) => {
           <Tooltip
             content={
               <p className="text-gray-300">
-                Одобренно <span className="text-white">{_props.inspector}</span>
+                Отклоненно <span className="text-white">@i22s0646</span>
               </p>
             }
           >
-            <IoIosCloseCircleOutline className="text-xl text-red-500" />
+            <IoIosCloseCircleOutline className="text-2xl text-red-500" />
           </Tooltip>
         )}
         <a href={`/review/${_props.uuid}`}>
