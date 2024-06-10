@@ -18,7 +18,7 @@ export const SendedReviewsList: FC = () => {
         </div>
       )}
       {data.map((review) => (
-        <ReviewCard key={review.uuid} {...review} />
+        <ReviewCard key={review.uuid} {...review} isAuthor={true} />
       ))}
     </div>
   );

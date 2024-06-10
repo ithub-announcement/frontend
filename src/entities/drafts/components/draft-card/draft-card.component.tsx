@@ -21,7 +21,7 @@ export const DraftCard: FC<DraftType> = (props) => {
         <div>
           <div className="flex flex-row justify-between w-full">
             <a href={`/editor/${props.uuid}`}>
-              <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white line-clamp-2">
                 {props.title}
               </h5>
             </a>

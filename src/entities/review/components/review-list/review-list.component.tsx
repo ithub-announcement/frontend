@@ -18,7 +18,7 @@ export const ReviewList: FC = () => {
         </div>
       )}
       {data.map((review) => (
-        <ReviewCard {...review} />
+        <ReviewCard {...review} isAuthor={false} />
       ))}
     </div>
   );
