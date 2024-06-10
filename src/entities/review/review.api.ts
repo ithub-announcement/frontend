@@ -57,11 +57,19 @@ export const ReviewAPI = createApi({
     }),
     GetListOfSendedOnReview: build.query<ReviewType[], void>({
       query: () => ({
-        url: "/review/reviewByAuthor",
+        url: "/review/author/all",
         method: "GET",
       }),
       transformResponse: (response: ResponseModel<ReviewType[]>) =>
         response.data!,
+      providesTags: ["Reviews"],
+    }),
+    GetCountOfSendedReviews: build.query<string, void>({
+      query: () => ({
+        url: "/review/author/count",
+        method: "GET",
+      }),
+      transformResponse: (response: ResponseModel<string>) => response.data!,
       providesTags: ["Reviews"],
     }),
   }),
@@ -71,4 +79,5 @@ export const {
   usePostSendToReviewMutation,
   useGetListOfReviewRequestsQuery,
   useGetListOfSendedOnReviewQuery,
+  useGetCountOfSendedReviewsQuery,
 } = ReviewAPI;

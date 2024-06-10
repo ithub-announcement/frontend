@@ -1,10 +1,12 @@
 import { ReviewList } from "@/entities/review/components/review-list/review-list.component";
+import { useTitle } from "@/shared/hooks/react/useTitle.hook";
 import { Center } from "@/widgets/center/center.component";
 import { Tooltip, Button } from "flowbite-react";
 import { FC } from "react";
 import { VscAdd } from "react-icons/vsc";
 
 const ReviewListView: FC = () => {
+  useTitle("Заявки на рассмотрение");
   return (
     <Center>
       <div className="w-full min-h-screen h-full">

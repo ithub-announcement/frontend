@@ -1,8 +1,9 @@
 import { DraftsList } from "@/entities/drafts/components/drafts-list/drafts-list.component";
 import { SendedReviewsList } from "@/entities/review/components/sended-reviews/sended-reviews.component";
+import { useGetCountOfSendedReviewsQuery } from "@/entities/review/review.api";
 import { useTitle } from "@/shared/hooks/react/useTitle.hook";
 import { Center } from "@/widgets/center/center.component";
-import { Button, TabItem, Tabs, Tooltip } from "flowbite-react";
+import { Badge, Button, TabItem, Tabs, Tooltip } from "flowbite-react";
 import { FC } from "react";
 import { GoIssueDraft } from "react-icons/go";
 import { PiEyesFill } from "react-icons/pi";
@@ -10,6 +11,8 @@ import { VscAdd } from "react-icons/vsc";
 
 const DraftsListView: FC = () => {
   useTitle("Черновики");
+
+  const { data } = useGetCountOfSendedReviewsQuery();
 
   return (
     <Center>
@@ -33,7 +36,15 @@ const DraftsListView: FC = () => {
                 <TabItem title="Черновики" icon={GoIssueDraft}>
                   <DraftsList />
                 </TabItem>
-                <TabItem title="На рассмотрении" icon={PiEyesFill}>
+                <TabItem
+                  title={
+                    <div className="flex flex-row gap-3">
+                      <span>На рассмотрении</span>
+                      {data && <Badge color="gray" children={data} />}
+                    </div>
+                  }
+                  icon={PiEyesFill}
+                >
                   <SendedReviewsList />
                 </TabItem>
               </Tabs>

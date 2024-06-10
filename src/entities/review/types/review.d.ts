@@ -5,15 +5,10 @@ export type ReviewType = {
   authorId: string;
   dateTime: Date;
   reason: string;
+  inspector: string;
   tags: [];
-  statusReview: StatusReview;
+  statusReview: "accept" | "review" | "reject";
 };
-
-export enum StatusReview {
-  review,
-  accept,
-  reject,
-}
 
 export type ReviewPayload = {
   uuid: string;

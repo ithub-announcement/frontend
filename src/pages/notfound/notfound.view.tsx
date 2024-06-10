@@ -1,6 +1,8 @@
+import { useTitle } from "@/shared/hooks/react/useTitle.hook";
 import { FC } from "react";
 
 const NotFoundView: FC = () => {
+  useTitle("Такой странички тут нет");
   return (
     <div className="w-full h-screen flex justify-center items-center">
       <div className="text-center flex flex-col gap-10 justify-center items-center">

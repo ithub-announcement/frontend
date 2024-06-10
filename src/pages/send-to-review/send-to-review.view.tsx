@@ -1,7 +1,9 @@
+import { useTitle } from "@/shared/hooks/react/useTitle.hook";
 import { SendToReviewForm } from "@/widgets/send-to-review-form/send-to-review-form.component";
 import { FC } from "react";
 
 const SendToReviewView: FC = () => {
+  useTitle("Отправка на рассмотрение");
   return (
     <>
       <div className="w-full max-w-[560px] min-h-screen mx-auto">

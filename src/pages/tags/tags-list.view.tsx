@@ -1,3 +1,4 @@
+import { useTitle } from "@/shared/hooks/react/useTitle.hook";
 import { useTypedSelector } from "@/shared/hooks/redux/redux.selector";
 import { Center } from "@/widgets/center/center.component";
 import { Preloader } from "@/widgets/preloader/preloader.component";
@@ -8,6 +9,8 @@ import { FC, useState } from "react";
 import { VscAdd } from "react-icons/vsc";
 
 const TagsListView: FC = () => {
+  useTitle("Категории");
+
   const payload = useTypedSelector((state) => state.GlobalSliceReducer);
   const [state, setState] = useState<boolean>(false);
 
