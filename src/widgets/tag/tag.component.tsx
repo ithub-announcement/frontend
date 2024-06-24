@@ -7,13 +7,14 @@ export const TagCard: FC<TagPayloadType> = (props) => {
     <Badge
       color="transparent"
       size="sm"
-      style={{ backgroundColor: "#" + props.baseColor }}
+      className="border-2"
+      style={{ borderColor: "#" + props.baseColor }}
     >
       <p className="flex gap-1">
-        <span style={{ color: "#" + props.textColor }} className="opacity-70">
+        <span style={{ color: "#" + props.baseColor }} className="opacity-70">
           #
         </span>
-        <span style={{ color: "#" + props.textColor }}>
+        <span style={{ color: "#" + props.baseColor }}>
           {props.value ? props.value : "Название"}
         </span>
       </p>

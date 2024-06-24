@@ -26,12 +26,14 @@ export const ReviewAPI = createApi({
       transformResponse: (response: ResponseModel<ReviewType[]>) =>
         response.data!,
     }),
-    GetReviewRequestByUUID: build.query<void, string>({
+    GetReviewRequestByUUID: build.query<ReviewType, string>({
       query: (payload) => ({
         url: "/review/" + payload,
         method: "GET",
       }),
       providesTags: ["Review"],
+      transformResponse: (response: ResponseModel<ReviewType>) =>
+        response.data!,
     }),
     PostSendToReview: build.mutation<void, ReviewPayload>({
       query: (payload) => ({
@@ -43,17 +45,27 @@ export const ReviewAPI = createApi({
     }),
     ApproveReview: build.mutation<void, string>({
       query: (payload) => ({
-        url: "/review/approve/" + payload,
+        url: "/announcements/toPublic",
         method: "POST",
+        body: {
+          uuid: payload,
+        },
       }),
-      invalidatesTags: ["Review"],
+      invalidatesTags: ["Review", "Reviews"],
     }),
-    RejectReview: build.mutation<void, string>({
+    RejectReview: build.mutation<
+      void,
+      {
+        uuid: string;
+        reason?: string;
+      }
+    >({
       query: (payload) => ({
-        url: "/review/reject/" + payload,
+        url: "/review/reject/" + payload.uuid,
         method: "POST",
+        body: payload.reason,
       }),
-      invalidatesTags: ["Review"],
+      invalidatesTags: ["Review", "Reviews"],
     }),
     GetListOfSendedOnReview: build.query<ReviewType[], void>({
       query: () => ({
@@ -80,4 +92,7 @@ export const {
   useGetListOfReviewRequestsQuery,
   useGetListOfSendedOnReviewQuery,
   useGetCountOfSendedReviewsQuery,
+  useGetReviewRequestByUUIDQuery,
+  useApproveReviewMutation,
+  useRejectReviewMutation,
 } = ReviewAPI;

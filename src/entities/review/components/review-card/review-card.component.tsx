@@ -13,7 +13,8 @@ export const ReviewCard: FC<ReviewType & { isAuthor?: boolean }> = (_props) => {
           <Tooltip
             content={
               <p className="text-gray-300">
-                Одобренно <span className="text-white">@i22s0646</span>
+                Одобренно{" "}
+                <span className="text-white">@{_props.inspector}</span>
               </p>
             }
           >
@@ -29,7 +30,8 @@ export const ReviewCard: FC<ReviewType & { isAuthor?: boolean }> = (_props) => {
           <Tooltip
             content={
               <p className="text-gray-300">
-                Отклоненно <span className="text-white">@i22s0646</span>
+                Отклоненно{" "}
+                <span className="text-white">@{_props.inspector}</span>
               </p>
             }
           >

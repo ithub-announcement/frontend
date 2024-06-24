@@ -1,7 +1,13 @@
 import { ModalType } from "@/app/types/components";
 import { useCreateNewTagMutation } from "@/entities/tags/tags.api";
 import { TagPayloadType } from "@/entities/tags/types/tags";
-import { Button, FloatingLabel, Modal, Spinner } from "flowbite-react";
+import {
+  Button,
+  FloatingLabel,
+  Modal,
+  Spinner,
+  TextInput,
+} from "flowbite-react";
 import { FC, useEffect, useState } from "react";
 import { MdCreateNewFolder } from "react-icons/md";
 import { TagCard } from "../tag/tag.component";
@@ -9,8 +15,7 @@ import { TagCard } from "../tag/tag.component";
 export const TagsModal: FC<ModalType> = (props) => {
   const [state, setState] = useState<TagPayloadType>({
     value: "",
-    baseColor: "ffffff",
-    textColor: "000000",
+    baseColor: "000000",
   });
   const [request, { isLoading, isSuccess }] = useCreateNewTagMutation();
 
@@ -43,14 +48,7 @@ export const TagsModal: FC<ModalType> = (props) => {
                 setState((prev) => ({ ...prev, baseColor: ev.target.value }))
               }
             />
-            <FloatingLabel
-              variant="outlined"
-              label="Цвет текста"
-              defaultValue={state.textColor}
-              onChange={(ev) =>
-                setState((prev) => ({ ...prev, textColor: ev.target.value }))
-              }
-            />
+            <TextInput className="w-full" type="color" />
           </div>
         </Modal.Body>
         <Modal.Footer>

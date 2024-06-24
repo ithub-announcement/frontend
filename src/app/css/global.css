@@ -24,6 +24,7 @@ body,
   color: var(--color-text-primary) !important;
   font-family: var(--default-font);
   overflow-x: hidden;
+  position: relative;
 }
 
 .focus\:ring-cyan-300:focus {
