@@ -40,15 +40,17 @@ export const TagsModal: FC<ModalType> = (props) => {
                 setState((prev) => ({ ...prev, value: ev.target.value }))
               }
             />
-            <FloatingLabel
-              variant="outlined"
-              label="Цвет категории"
-              defaultValue={state.baseColor}
-              onChange={(ev) =>
-                setState((prev) => ({ ...prev, baseColor: ev.target.value }))
-              }
+            <TextInput
+              className="w-full"
+              type="color"
+              defaultValue={"#" + state.baseColor}
+              onChange={(ev) => {
+                setState((prev) => ({
+                  ...prev,
+                  baseColor: ev.target.value.slice(1),
+                }));
+              }}
             />
-            <TextInput className="w-full" type="color" />
           </div>
         </Modal.Body>
         <Modal.Footer>

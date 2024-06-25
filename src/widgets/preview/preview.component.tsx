@@ -7,7 +7,7 @@ export const Preview: FC<PreviewProps> = (_props) => {
   return (
     <div className="w-full min-h-full flex flex-col gap-5 px-4">
       <div>
-        <h2 className="w-full text-5xl text-black dark:text-white font-bold mb-3">
+        <h2 className="w-full text-5xl text-black dark:text-white font-bold mb-8">
           {_props.title}
         </h2>
         <div className="flex gap-2 mb-5">
@@ -33,7 +33,7 @@ export const Preview: FC<PreviewProps> = (_props) => {
         </div>
       </div>
       <div>
-        <span className="w-full text-xl text-black dark:text-white font-normal">
+        <span className="w-full text-xl text-black dark:text-white font-normal whitespace-pre-line">
           {_props.content}
         </span>
       </div>

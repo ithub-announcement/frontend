@@ -1,18 +1,33 @@
 import { usePostSendToReviewMutation } from "@/entities/review/review.api";
+import { useGetListOfTagsQuery } from "@/entities/tags/tags.api";
 import { useActions } from "@/shared/hooks/redux/redux.actions";
 import { useTypedSelector } from "@/shared/hooks/redux/redux.selector";
-import { Button, FloatingLabel, Spinner } from "flowbite-react";
-import { FC, useEffect } from "react";
+import { Button, FloatingLabel, Select, Spinner } from "flowbite-react";
+import { ChangeEventHandler, FC, useEffect, useState } from "react";
 import { BiErrorAlt } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
+import { TagCard } from "../tag/tag.component";
+import { TagType } from "@/entities/tags/types/tags";
 
 export const SendToReviewForm: FC = () => {
   const payload = useTypedSelector((state) => state.EditorSliceReducer);
   const { setEditorTitle } = useActions();
   const navigate = useNavigate();
+  const [state, setState] = useState<number[]>([]);
 
+  const { data: TagList, isLoading: TagLoading } = useGetListOfTagsQuery();
   const [request, { isLoading, isSuccess, data, isError, error }] =
     usePostSendToReviewMutation();
+
+  const handleCategoryChange = (tag: string) => {
+    const isSelected = state.includes(+tag);
+    console.log(state);
+    if (isSelected) {
+      setState(state.filter((item) => item !== +tag));
+    } else {
+      setState([...state, +tag]);
+    }
+  };
 
   useEffect(() => {
     if (isSuccess) navigate("/drafts");
@@ -27,7 +42,36 @@ export const SendToReviewForm: FC = () => {
           defaultValue={payload.wrapper.title}
           onChange={(e) => setEditorTitle(e.target.value)}
         />
-        <FloatingLabel variant="outlined" label="Категории" />
+        <div>
+          <div className="flex flex-col gap-2 my-5">
+            <p>Выбранные категории:</p>
+            <div className="flex flex-row ">
+              {state.map((el) => (
+                <TagCard
+                  key={el}
+                  {...TagList!.find((x) => x.id === el)!}
+                  onClick={() => handleCategoryChange(el.toString())}
+                />
+              ))}
+            </div>
+          </div>
+          <Select
+            className="w-full"
+            disabled={TagLoading}
+            onChange={(ev) => handleCategoryChange(ev.target.value)}
+          >
+            <option defaultChecked>Выбрать категории</option>
+            {TagList?.map((el) => (
+              <option
+                key={el.id}
+                value={el.id}
+                disabled={state.includes(el.id)}
+              >
+                {el.value}
+              </option>
+            ))}
+          </Select>
+        </div>
       </div>
       {isError && error && (
         <div className="flex gap-1 justify-start items-center mb-5">
@@ -43,7 +87,7 @@ export const SendToReviewForm: FC = () => {
           onClick={() =>
             request({
               uuid: payload.origin.uuid,
-              tags: [12],
+              tags: state,
             })
           }
         >
