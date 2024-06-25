@@ -12,7 +12,14 @@ export const AnnouncementList: FC = () => {
 
   return (
     <>
-      {isLoading && <Preloader />}
+      {isLoading && <Preloader fullScreen={false} />}
+      {data.length <= 0 && (
+        <div className="w-full rounded py-5 flex justify-start items-center">
+          <div>
+            <h3>Тут ничего нет =)</h3>
+          </div>
+        </div>
+      )}
       {data.map((el) => (
         <AnnouncementCard key={el.uuid} {...el} />
       ))}

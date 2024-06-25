@@ -12,6 +12,7 @@ const NotFoundView: FC = () => {
           alt="not found"
         />
         <h1 className="text-6xl text-black font-bold">#404</h1>
+        <p>Ну чо не судьба(</p>
         <a href="/" className="text-gray-400 hover:text-purple-400">
           <span>Вернуться назад</span>
         </a>

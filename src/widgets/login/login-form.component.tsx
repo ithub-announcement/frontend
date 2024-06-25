@@ -91,7 +91,7 @@ export const LoginForm: FC = () => {
       </div>
       <div className="w-full text-center">
         <a
-          href="#"
+          href="/login/help"
           className="text-center text-[#835de1] hover:opacity-80 transition"
         >
           Не можете войти?

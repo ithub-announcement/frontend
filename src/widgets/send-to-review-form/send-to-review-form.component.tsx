@@ -44,7 +44,7 @@ export const SendToReviewForm: FC = () => {
         <div>
           <div className="flex flex-col gap-2 my-5">
             <p>Выбранные категории:</p>
-            <div className="flex flex-row ">
+            <div className="flex flex-row gap-3">
               {state.map((el) => (
                 <TagCard
                   key={el}
