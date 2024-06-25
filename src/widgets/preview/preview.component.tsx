@@ -10,11 +10,13 @@ export const Preview: FC<PreviewProps> = (_props) => {
         <h2 className="w-full text-5xl text-black dark:text-white font-bold mb-8">
           {_props.title}
         </h2>
-        <div className="flex gap-2 mb-5">
-          {_props.tags.map((el) => (
-            <TagCard key={el.id} {...el} />
-          ))}
-        </div>
+        {_props.tags.length !== 0 && (
+          <div className="flex gap-2 mb-5">
+            {_props.tags.map((el) => (
+              <TagCard key={el.id} {...el} />
+            ))}
+          </div>
+        )}
         <div className="w-full flex gap-2 justify-start items-center">
           <Avatar size="xs" rounded />
           <span>
