@@ -1,6 +1,6 @@
 import { TagPayloadType } from "@/entities/tags/types/tags";
 import { Badge } from "flowbite-react";
-import { FC, HTMLAttributes } from "react";
+import { FC } from "react";
 
 export const TagCard: FC<
   TagPayloadType & {

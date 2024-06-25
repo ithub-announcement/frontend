@@ -3,11 +3,10 @@ import { useGetListOfTagsQuery } from "@/entities/tags/tags.api";
 import { useActions } from "@/shared/hooks/redux/redux.actions";
 import { useTypedSelector } from "@/shared/hooks/redux/redux.selector";
 import { Button, FloatingLabel, Select, Spinner } from "flowbite-react";
-import { ChangeEventHandler, FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { BiErrorAlt } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import { TagCard } from "../tag/tag.component";
-import { TagType } from "@/entities/tags/types/tags";
 
 export const SendToReviewForm: FC = () => {
   const payload = useTypedSelector((state) => state.EditorSliceReducer);
