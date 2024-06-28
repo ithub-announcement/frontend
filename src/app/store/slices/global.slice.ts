@@ -4,6 +4,9 @@ const initialState = {
   global: {
     isLoading: false,
   },
+  publications: {
+    searchParams: [],
+  },
 };
 
 export const GlobalSlice = createSlice({
@@ -12,6 +15,9 @@ export const GlobalSlice = createSlice({
   reducers: {
     setGlobalLoading: (state, action) => {
       state.global.isLoading = action.payload;
+    },
+    setPublicationsSearchParams: (state, action) => {
+      state.publications.searchParams = action.payload;
     },
   },
 });

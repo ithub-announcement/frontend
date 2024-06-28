@@ -1,5 +1,5 @@
 import { Card, Button, Textarea, Spinner } from "flowbite-react";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { ReviewRadio } from "../review-radio/review-radio.component";
 import {
   useApproveReviewMutation,
@@ -18,10 +18,18 @@ export const ReviewComment: FC = () => {
   const payload = useTypedSelector((state) => state.ReviewSliceReducer);
 
   const navigate = useNavigate();
-  const [approve_request, { isLoading: ApproveLoading }] =
-    useApproveReviewMutation();
-  const [reject_request, { isLoading: RejectLoading }] =
-    useRejectReviewMutation();
+  const [
+    approve_request,
+    { isLoading: ApproveLoading, isSuccess: ApproveSuccess },
+  ] = useApproveReviewMutation();
+  const [
+    reject_request,
+    { isLoading: RejectLoading, isSuccess: RejectSuccess },
+  ] = useRejectReviewMutation();
+
+  useEffect(() => {
+    if (ApproveSuccess || RejectSuccess) window.location.reload();
+  }, [ApproveSuccess || RejectSuccess]);
 
   return (
     <Card className="w-full shadow-none">

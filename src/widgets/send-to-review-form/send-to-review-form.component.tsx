@@ -19,12 +19,14 @@ export const SendToReviewForm: FC = () => {
     usePostSendToReviewMutation();
 
   const handleCategoryChange = (tag: string) => {
-    const isSelected = state.includes(+tag);
+    const isSelected: boolean = state.includes(+tag);
     console.log(state);
-    if (isSelected) {
-      setState(state.filter((item) => item !== +tag));
-    } else {
-      setState([...state, +tag]);
+    if (!isNaN(+tag)) {
+      if (isSelected) {
+        setState(state.filter((item) => item !== +tag));
+      } else {
+        setState([...state, +tag]);
+      }
     }
   };
 
