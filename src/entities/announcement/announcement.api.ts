@@ -7,6 +7,13 @@ export const AnnouncementAPI = createApi({
   reducerPath: "announcement/api",
   baseQuery: fetchBaseQuery({
     baseUrl: __APPLICATION_CONFIG__.api.baseUrl,
+    prepareHeaders: (headers) => {
+      const token: string | null = localStorage.getItem("access");
+      if (token) {
+        headers.set("Authorization", token);
+      }
+      return headers;
+    },
   }),
   tagTypes: ["Announcement", "Announcements"],
   endpoints: (build) => ({
@@ -28,8 +35,18 @@ export const AnnouncementAPI = createApi({
       transformResponse: (response: ResponseModel<AnnouncementType>) =>
         response.data!,
     }),
+    DeleteAnnouncementByUUID: build.mutation<ResponseModel<unknown>, string>({
+      query: (payload) => ({
+        url: "/announcements/" + payload,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Announcement", "Announcements"],
+    }),
   }),
 });
 
-export const { useGetAnnouncementByUUIDQuery, useGetListOfAnnouncementsQuery } =
-  AnnouncementAPI;
+export const {
+  useGetAnnouncementByUUIDQuery,
+  useGetListOfAnnouncementsQuery,
+  useDeleteAnnouncementByUUIDMutation,
+} = AnnouncementAPI;

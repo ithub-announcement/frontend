@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { DeleteModalProps } from "./delete-modal";
-import { Button, Modal } from "flowbite-react";
+import { Button, Modal, Spinner } from "flowbite-react";
 import { ModalType } from "@/app/types/components";
 
 export const DeleteModal: FC<ModalType & DeleteModalProps> = (props) => {
@@ -31,7 +31,11 @@ export const DeleteModal: FC<ModalType & DeleteModalProps> = (props) => {
           color="failure"
           onClick={() => props.deleteRequest(props.id)}
         >
-          <span>Удалить</span>
+          {props.isLoading ? (
+            <Spinner size="xs" color="black" />
+          ) : (
+            <span>Удалить</span>
+          )}
         </Button>
       </Modal.Footer>
     </Modal>

@@ -31,14 +31,8 @@ export class AppCore {
           }
         );
 
-        if (response.status == 401) {
-          localStorage.setItem(
-            "access",
-            JSON.stringify(
-              (response.body as unknown as ResponseModel<AuthorizationType>)
-                .data?.accessToken
-            )
-          );
+        if ((await response.json().then((r) => r.status)) == 401) {
+          localStorage.clear();
           return;
         }
       }
