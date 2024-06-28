@@ -1,6 +1,5 @@
 import ReactDOM from "react-dom/client";
-import { AppComponent, AuthorizationType, CoreConfiguration } from "./types";
-import { ResponseModel } from "../types";
+import { AppComponent, CoreConfiguration } from "./types";
 
 export class AppCore {
   private configuration: CoreConfiguration = {
